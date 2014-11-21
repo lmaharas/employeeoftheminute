@@ -1,0 +1,82 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+	  <meta charset="utf-8" />
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	  <title>Employee Of The Minute</title>
+
+      <!--JS-->
+      <script src="js/vendor/jquery.js"></script>
+      <script src="js/vendor/modernizr.js"></script>
+      <script src="js/foundation.min.js"></script>
+      <script>
+          $(document).foundation();
+
+          $(document).ready(function(){
+              var windowWidth = window.outerWidth;
+
+              $('#inputCanvas').attr('width', windowWidth + 'px').attr('height', (windowWidth/4)*3 + 'px');
+              $('#inputVideo').attr('width', windowWidth + 'px').attr('height', (windowWidth/4)*3 + 'px');
+              $('#c1').attr('width', windowWidth + 'px').attr('height', (windowWidth/4)*3 + 'px');
+              $('#c2').attr('width', windowWidth + 'px').attr('height', (windowWidth/4)*3 + 'px');
+              $('#c3').attr('width', windowWidth + 'px').attr('height', (windowWidth/4)*3 + 'px');
+              $('#cBlurred').attr('width', windowWidth + 'px').attr('height', (windowWidth/4)*3 + 'px');
+              $('#cGrayscale').attr('width', windowWidth + 'px').attr('height', (windowWidth/4)*3 + 'px');
+
+              $('#cMasked').attr('width', windowWidth + 'px').attr('height', (windowWidth/4)*3 + 'px');
+
+              $('.sparkles').attr('width', windowWidth/4 + 'px').attr('height', windowWidth/4 + 'px').attr('src', 'img/sparkles.gif');
+
+              var headshotCompositorApp = new HeadshotCompositor.App({
+                  imageW: windowWidth,
+                  imageH: (windowWidth/4)*3,
+                  bgImageUrl: './img/rainbow2.jpg',
+                  zDepthTriggerDistance: 60,
+                  resetAppAfterThisManyMilliseconds: 10000
+              });
+          });
+      </script>
+
+      <!--CSS-->
+      <link rel="stylesheet" href="css/foundation.css" />
+	  <style>
+		  .debug {
+			  display: none;
+			  /*display: block;*/
+			  margin-bottom: 20px;
+		  }
+
+		  .display {
+			  position: relative;
+		  }
+
+		  #c3, #cBlurred, #cGrayscale {
+			  display: none;;
+		  }
+
+	  </style>
+
+  </head>
+    <body>
+        <div class="debug">
+            <canvas id="inputCanvas"></canvas>
+            <video id="inputVideo" autoplay loop></video>
+            <canvas id="c1"></canvas>
+            <canvas id="c2"></canvas>
+            <canvas id="c3"></canvas>
+            <canvas id="cBlurred"></canvas>
+            <canvas id="cGrayscale"></canvas>
+        </div>
+        <div class="display">
+            <img class="sparkles" style="position: absolute; top:0; left:0; z-index:3; -webkit-user-select: none">
+            <canvas id="cMasked" width="100%"></canvas>
+        </div>
+
+
+        <script src="js/headtrackr-master/headtrackr.js"></script>
+        <script src="js/color-diff-master/lib/convert.js"></script>
+        <script src="js/color-diff-master/lib/diff.js"></script>
+        <script src="js/StackBlur.js"></script>
+        <script src="js/HeadshotCompositor.js"></script>
+    </body>
+</html>
